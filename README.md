@@ -1,1 +1,3 @@
-# homey-gather-integration
+# Gather
+
+Integration to the Gather video chat platform.

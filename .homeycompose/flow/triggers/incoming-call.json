@@ -1,0 +1,17 @@
+{
+  "title": {
+    "en": "Incoming call"
+  },
+  "tokens": [
+    {
+      "type": "string",
+      "name": "caller",
+      "title": {
+        "en": "Caller"
+      },
+      "example": {
+        "en": "John Doe"
+      }
+    }
+  ]
+}
