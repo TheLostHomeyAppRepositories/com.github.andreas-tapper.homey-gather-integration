@@ -1,1 +1,10 @@
-{}
+{
+    "settings": {
+        "title": "My Settings Page",
+        "subtitle": "More information here",
+        "my-settings": "My settings",
+        "avatarName": "Avatar name",
+        "spaceId": "Space",
+        "gatherToken": "Token"
+    }
+}

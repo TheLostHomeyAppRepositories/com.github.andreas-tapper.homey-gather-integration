@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+</head>
+
+<body>
+    <header class="homey-header">
+        <h1 class="homey-title" data-i18n="settings.title"></h1>
+        <p class="homey-subtitle" data-i18n="settings.subtitle"></p>
+    </header>
+
+    <fieldset class="homey-form-fieldset">
+        <legend class="homey-form-legend" data-i18n="settings.my-settings">My Settings</legend>
+
+        <div class="homey-form-group">
+            <label class="homey-form-label" for="avatarName" data-i18n="settings.avatarName">Avatar name</label>
+            <input class="homey-form-input" id="avatarName" type="text" value="" />
+        </div>        
+        <div class="homey-form-group">
+            <label class="homey-form-label" for="spaceId" data-i18n="settings.spaceId">Space</label>
+            <input class="homey-form-input" id="spaceId" type="text" value="" />
+        </div>
+        <div class="homey-form-group">
+            <label class="homey-form-label" for="gatherToken" data-i18n="settings.gatherToken">Token</label>
+            <input class="homey-form-input" id="gatherToken" type="text" value="" />
+        </div>
+    </fieldset>
+
+    <button id="save" class="homey-button-primary-full">Save changes</button>
+
+    <script type="text/javascript">
+        function onHomeyReady(Homey) {
+            Homey.ready();
+
+            var avatarNameElement = document.getElementById("avatarName");
+            var spaceIdElement = document.getElementById("spaceId");
+            var gatherTokenElement = document.getElementById("gatherToken");
+            var saveElement = document.getElementById("save");
+
+            Homey.get("avatarName", function (err, value) {
+                if (err) return Homey.alert(err);
+                avatarNameElement.value = value;
+            });
+
+            Homey.get("spaceId", function (err, value) {
+                if (err) return Homey.alert(err);
+                spaceIdElement.value = value;
+            });
+
+            Homey.get("gatherToken", function (err, value) {
+                if (err) return Homey.alert(err);
+                gatherTokenElement.value = value;
+            });
+
+            saveElement.addEventListener("click", function (e) {
+                Homey.set("avatarName", avatarNameElement.value, function (err) {
+                    if (err) return Homey.alert(err);
+                });
+                Homey.set("spaceId", spaceIdElement.value, function (err) {
+                    if (err) return Homey.alert(err);
+                });
+                Homey.set("gatherToken", gatherTokenElement.value, function (err) {
+                    if (err) return Homey.alert(err);
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

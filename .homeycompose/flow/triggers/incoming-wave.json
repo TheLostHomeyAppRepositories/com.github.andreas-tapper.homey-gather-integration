@@ -1,13 +1,13 @@
 {
   "title": {
-    "en": "Incoming call"
+    "en": "Waving at you"
   },
   "tokens": [
     {
-      "name": "caller",
+      "name": "person",
       "type": "string",
       "title": {
-        "en": "Caller"
+        "en": "Person"
       },
       "example": {
         "en": "John Doe"

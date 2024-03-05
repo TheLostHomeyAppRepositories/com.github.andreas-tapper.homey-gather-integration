@@ -1,0 +1,15 @@
+{
+    "title": {
+        "en": "Gather connection status was changed"
+    },
+    "tokens": [
+        {
+            "name": "connected",
+            "type": "boolean",
+            "title": {
+                "en": "Connected"
+            },
+            "example": false
+        }
+    ]
+}
