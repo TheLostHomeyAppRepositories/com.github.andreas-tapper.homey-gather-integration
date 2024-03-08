@@ -14,6 +14,7 @@ class GatherApp extends Homey.App {
 
   // Gather integration
   #game;
+  #isConnected = false;
   #avatarName;
   #player;
   #playerPrivateSpaceId;
@@ -53,6 +54,11 @@ class GatherApp extends Homey.App {
     const aloneConditionCard = self.homey.flow.getConditionCard("youre-alone");
     aloneConditionCard.registerRunListener(async () => {
       return self.me?.isAlone == true;
+    });
+
+    const isConnectedConditionCard = self.homey.flow.getConditionCard("is-connected");
+    isConnectedConditionCard.registerRunListener(async () => {
+      return !!self.#game && self.#isConnected;
     });
 
     const connectActionCard = self.homey.flow.getActionCard("connect");
@@ -115,6 +121,7 @@ class GatherApp extends Homey.App {
     const self = this;
     return (connected) => {
       self.log(`Gather connection ${(connected ? 'established' : 'failed')}.`);
+      self.#isConnected = connected;
       self.#connectionStatusCard.trigger({ connected: connected });
     };
   }
