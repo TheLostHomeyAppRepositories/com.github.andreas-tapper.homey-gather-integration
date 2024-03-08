@@ -1,0 +1,8 @@
+{
+  "title": {
+    "en": "Connect to Gather"
+  },
+  "hint": {
+    "en": "Tries to connect to Gather, if already connected this will be ignored."
+  }
+}

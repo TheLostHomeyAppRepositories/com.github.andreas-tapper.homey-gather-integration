@@ -55,18 +55,29 @@ class GatherApp extends Homey.App {
       return self.me?.isAlone == true;
     });
 
+    const connectActionCard = self.homey.flow.getActionCard("connect");
+    connectActionCard.registerRunListener(async () => {
+      await self.#connectToGather();
+    });
+
+    const disconnectActionCard = self.homey.flow.getActionCard("disconnect");
+    disconnectActionCard.registerRunListener(async () => {
+      await self.#disconnectFromGather();
+    });
+
+
     // Gather integration
     self.#avatarName = self.homey.settings.get("avatarName") || Homey.env.AVATAR_NAME;
-    await self.connectToGather();
+    await self.#connectToGather();
 
     self.log('Initialization of the Gather integration completed.');
   }
 
   async onUninit() {
-    await this.disconnectFromGather();
+    await this.#disconnectFromGather();
   }
 
-  async connectToGather() {
+  async #connectToGather() {
     const self = this;
 
     if (!!self.#game) {
@@ -86,16 +97,18 @@ class GatherApp extends Homey.App {
     self.#game.subscribeToEvent("playerSetsIsAlone", self.#gatherPlayerSetsIsAlone());
     self.#game.subscribeToEvent("playerWaves", self.#gatherPlayerWaves());
 
-    this.#game.connect();
+    self.#game.connect();
   }
 
-  async disconnectFromGather() {
-    if (!game) {
+  async #disconnectFromGather() {
+    const self = this;
+    
+    if (!self.#game) {
       return;
     }
 
-    await this.#game.disconnect();
-    this.#game = null;
+    await self.#game.disconnect();
+    self.#game = null;
   }
 
   #gatherConnection() {
@@ -144,7 +157,7 @@ class GatherApp extends Homey.App {
     return (data, context) => {
       const privateSpaceId = self.#gatherPlayerInPrivateSpace(context?.player);
 
-      if(!self.me) {
+      if (!self.me) {
         return;
       }
 
@@ -198,7 +211,7 @@ class GatherApp extends Homey.App {
     let map = null;
 
     try {
-      map = self.#game.completeMaps[player.map];  
+      map = self.#game.completeMaps[player.map];
     } catch (error) {
       // This can occur in the beginning when the map isn't fully setup.
     }
