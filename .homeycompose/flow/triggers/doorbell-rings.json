@@ -1,0 +1,20 @@
+{
+  "title": {
+    "en": "There is someone ringing"
+  },
+  "hint": {
+    "en": "This will trigger when a Gather user is ringing you."
+  },
+  "tokens": [
+    {
+      "name": "person",
+      "type": "string",
+      "title": {
+        "en": "Person"
+      },
+      "example": {
+        "en": "John Doe"
+      }
+    }
+  ]
+}

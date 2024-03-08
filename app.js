@@ -7,7 +7,7 @@ global.WebSocket = require("isomorphic-ws");
 
 class GatherApp extends Homey.App {
   // Homey cards
-  #incomingCallCard;
+  #doorbellRingsCard;
   #incomingWaveCard;
   #connectionStatusCard;
   #presenceStatusCard;
@@ -46,7 +46,7 @@ class GatherApp extends Homey.App {
     self.log('Starting initialization of the Gather integration.');
 
     // Flow cards
-    self.#incomingCallCard = self.homey.flow.getTriggerCard("incoming-call");
+    self.#doorbellRingsCard = self.homey.flow.getTriggerCard("doorbell-rings");
     self.#incomingWaveCard = self.homey.flow.getTriggerCard("incoming-wave");
     self.#connectionStatusCard = self.homey.flow.getTriggerCard("connection-status");
     self.#presenceStatusCard = self.homey.flow.getTriggerCard("presence-status");
@@ -92,7 +92,10 @@ class GatherApp extends Homey.App {
     }
 
     const apiKey = this.homey.settings.get("gatherToken") || Homey.env.GATHER_TOKEN;
-    const spaceId = this.homey.settings.get("spaceId") || Homey.env.SPACE_ID;
+    let spaceId = this.homey.settings.get("spaceId") || Homey.env.SPACE_ID;
+
+    // Replace slashes with backslashes to convert from the in-browser path to API space id path
+    spaceId = spaceId.replaceAll('/', '\\');
 
     self.#game = new Game(spaceId, () => Promise.resolve({ apiKey: apiKey }));
     self.#game.subscribeToConnection(self.#gatherConnection());
@@ -130,6 +133,8 @@ class GatherApp extends Homey.App {
     const self = this;
     return (code, reason) => {
       self.log(`Gather was disconnected '${reason}' (${code}).`);
+      self.#isConnected = false;
+      self.#game = null;
     };
   }
 
@@ -153,8 +158,8 @@ class GatherApp extends Homey.App {
   #gatherPlayerRings() {
     const self = this;
     return (data, context) => {
-      self.log(`${context?.player?.name} is calling you.`);
-      self.#incomingCallCard.trigger({ caller: context?.player?.name });
+      self.log(`${context?.player?.name} is ringing you.`);
+      self.#doorbellRingsCard.trigger({ person: context?.player?.name });
     }
   }
 
