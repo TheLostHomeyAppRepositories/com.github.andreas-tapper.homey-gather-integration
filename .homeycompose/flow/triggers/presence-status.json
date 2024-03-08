@@ -1,0 +1,36 @@
+{
+  "title": {
+    "en": "Presence status changes"
+  },
+  "hint": {
+    "en": "This will trigger when one (or many) Gather user enter (or leave) the the private space you're in."
+  },
+  "tokens": [
+    {
+      "name": "alone",
+      "type": "boolean",
+      "title": {
+        "en": "Alone"
+      },
+      "example": true
+    },
+    {
+      "name": "away",
+      "type": "boolean",
+      "title": {
+        "en": "Away"
+      },
+      "example": false
+    },    
+    {
+      "name": "persons",
+      "type": "string",
+      "title": {
+        "en": "Persons"
+      },
+      "example": {
+        "en": "John Doe, Jane Doe"
+      }
+    }
+  ]
+}

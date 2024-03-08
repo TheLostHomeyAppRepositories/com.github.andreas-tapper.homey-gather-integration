@@ -7,7 +7,7 @@
     "local"
   ],
   "name": {
-    "en": "Gather integration"
+    "en": "Gather"
   },
   "description": {
     "en": "Integration to the Gather video chat platform."

@@ -1,6 +1,9 @@
 {
     "title": {
-        "en": "Gather connection status was changed"
+        "en": "Gather's connection status changes"
+    },
+    "hint": {
+        "en": "This will trigger when Gather connect or disconnect to the Gather internet service."
     },
     "tokens": [
         {

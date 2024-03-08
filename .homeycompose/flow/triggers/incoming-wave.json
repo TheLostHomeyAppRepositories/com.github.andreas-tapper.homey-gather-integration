@@ -1,6 +1,9 @@
 {
   "title": {
-    "en": "Waving at you"
+    "en": "Someone waves at you"
+  },
+  "hint": {
+    "en": "This will trigger when a Gather user waves at you."
   },
   "tokens": [
     {

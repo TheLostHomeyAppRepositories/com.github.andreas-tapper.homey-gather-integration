@@ -1,8 +1,11 @@
 {
   "title": {
-    "en": "Incoming call"
+    "en": "There is an incoming call"
   },
-  "tokens": [
+  "hint": {
+    "en": "This will trigger when a Gather user call you."
+},
+"tokens": [
     {
       "name": "caller",
       "type": "string",
