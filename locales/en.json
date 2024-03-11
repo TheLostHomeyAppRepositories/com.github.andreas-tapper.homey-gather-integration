@@ -1,10 +1,11 @@
 {
     "settings": {
-        "title": "My Settings Page",
+        "title": "Gather",
         "subtitle": "More information here",
-        "my-settings": "My settings",
+        "my-settings": "Settings",
         "avatarName": "Avatar name",
         "spaceId": "Space",
-        "gatherToken": "Token"
+        "gatherToken": "Token",
+        "restartRequired": "Changes to the settings are applied after a restart of the application or a reconnection to Gather."
     }
 }

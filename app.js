@@ -51,9 +51,14 @@ class GatherApp extends Homey.App {
     self.#connectionStatusCard = self.homey.flow.getTriggerCard("connection-status");
     self.#presenceStatusCard = self.homey.flow.getTriggerCard("presence-status");
 
-    const aloneConditionCard = self.homey.flow.getConditionCard("youre-alone");
+    const aloneConditionCard = self.homey.flow.getConditionCard("alone");
     aloneConditionCard.registerRunListener(async () => {
       return self.me?.isAlone == true;
+    });
+
+    const presentConditionCard = self.homey.flow.getConditionCard("present");
+    presentConditionCard.registerRunListener(async () => {
+      return self.me?.away == false;
     });
 
     const isConnectedConditionCard = self.homey.flow.getConditionCard("is-connected");
@@ -71,9 +76,7 @@ class GatherApp extends Homey.App {
       await self.#disconnectFromGather();
     });
 
-
     // Gather integration
-    self.#avatarName = self.homey.settings.get("avatarName") || Homey.env.AVATAR_NAME;
     await self.#connectToGather();
 
     self.log('Initialization of the Gather integration completed.');
@@ -91,11 +94,22 @@ class GatherApp extends Homey.App {
       return;
     }
 
+    const url = 'https://app.gather.town/app/';
+
     const apiKey = this.homey.settings.get("gatherToken") || Homey.env.GATHER_TOKEN;
     let spaceId = this.homey.settings.get("spaceId") || Homey.env.SPACE_ID;
+    self.#avatarName = self.homey.settings.get("avatarName") || Homey.env.AVATAR_NAME;
 
-    // Replace slashes with backslashes to convert from the in-browser path to API space id path
+    // Trim url and replace slashes with backslashes to convert from the in-browser path to API space id path
+    if(spaceId.startsWith(url)) {
+      spaceId = spaceId.substring(url.length);
+    }
     spaceId = spaceId.replaceAll('/', '\\');
+
+    if(!apiKey || !spaceId) {
+      throw new Error("Api key or space isn't defined.");
+    }
+
 
     self.#game = new Game(spaceId, () => Promise.resolve({ apiKey: apiKey }));
     self.#game.subscribeToConnection(self.#gatherConnection());
@@ -133,8 +147,12 @@ class GatherApp extends Homey.App {
     const self = this;
     return (code, reason) => {
       self.log(`Gather was disconnected '${reason}' (${code}).`);
+
       self.#isConnected = false;
       self.#game = null;
+      self.#avatarName = null;
+      self.#player = null;
+      self.#playerPrivateSpaceId = null;
     };
   }
 
