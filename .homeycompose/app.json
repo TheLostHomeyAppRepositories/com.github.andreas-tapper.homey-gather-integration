@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
+  "brandColor": "#4358d8",
   "platforms": [
     "local"
   ],
@@ -15,6 +16,9 @@
   "category": [
     "internet"
   ],
+  "tags": { 
+    "en": ["gather", "integration", "video conferencing", "conference", "remote work"] 
+  },
   "permissions": [],
   "images": {
     "small": "/assets/images/small.png",
@@ -24,5 +28,16 @@
   "author": {
     "name": "Andreas Tapper",
     "email": "andreas.tapper@outlook.com"
+  },
+  "contributing": {
+    "donate": {
+       "githubSponsors": {
+         "username": "andreas-tapper"
+       }
+    }
+  },
+  "source": "https://github.com/andreas-tapper/homey-gather-integration",
+  "bugs": {
+    "url": "https://github.com/andreas-tapper/homey-gather-integration/issues"
   }
 }
