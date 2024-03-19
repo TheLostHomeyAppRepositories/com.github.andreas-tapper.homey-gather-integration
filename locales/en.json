@@ -1,11 +1,26 @@
 {
+    "save": "Save changes",
+    "saving": "Saving changes",
+    "noApiKeyFound": "No API key provided, please configure it in application settings.",
     "settings": {
-        "title": "Gather",
-        "subtitle": "More information here",
-        "my-settings": "Settings",
+        "title": "Application settings",
+        "subtitle": "These are the shared settings for all your Gather spaces.",
+        "token": "Token",
+        "tokenHelp": "The access token is required to connect to the Gather platform and it can easily be generated at the link below.",
+        "tokenRequired": "Please provide an API token.",
+        "restartRequired": "Changes to the settings are applied after a restart or a reconnection to the Gather space.",
+        "saved": "Settings has now been saved."
+    },
+    "device": {
+        "create": "Connect to a space",
+        "name": "Name",
+        "nameHelp": "Name of the space you're creating. This name should be unique between all your configured spaces.",
+        "nameRequired": "Please provide a name for the space.",
         "avatarName": "Avatar name",
+        "avatarNameHelp": "The name displayed above your character in Gather.",
+        "avatarNameRequired": "Please provide a name for your avatar.",
         "spaceId": "Space",
-        "gatherToken": "Token",
-        "restartRequired": "Changes to the settings are applied after a restart of the application or a reconnection to Gather."
+        "spaceIdHelp": "This is the unique identifier of your space. Use the whole URL or just the id.",
+        "spaceIdRequired": "Please provide the URL (or id) to your space."
     }
 }

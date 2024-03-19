@@ -1,8 +1,0 @@
-{
-  "title": {
-    "en": "Disconnect from Gather"
-  },
-  "hint": {
-    "en": "Disconnect from Gather, if already disconnected this will be ignored."
-  }
-}

@@ -1,0 +1,145 @@
+{
+    "actions": [
+        {
+            "id": "connect",
+            "title": {
+                "en": "Connect to Gather"
+            },
+            "hint": {
+                "en": "Tries to connect to Gather, if already connected this will be ignored."
+            }
+        },
+        {
+            "id": "disconnect",
+            "title": {
+                "en": "Disconnect from Gather"
+            },
+            "hint": {
+                "en": "Disconnect from Gather, if already disconnected this will be ignored."
+            }
+        }
+    ],
+    "conditions": [
+        {
+            "id": "alone",
+            "title": {
+                "en": "You're !{{|not }}alone"
+            }
+        },
+        {
+            "id": "is-connected",
+            "title": {
+                "en": "Is connected"
+            },
+            "hint": {
+                "en": "You've got a connection to Gather"
+            }
+        },
+        {
+            "id": "present",
+            "title": {
+                "en": "You're !{{present|away}}"
+            }
+        }
+    ],
+    "triggers": [
+        {
+            "id": "connection-status",
+            "title": {
+                "en": "Connection status changes"
+            },
+            "hint": {
+                "en": "This will trigger when Gather connect or disconnect to the Gather internet service."
+            },
+            "tokens": [
+                {
+                    "name": "connected",
+                    "type": "boolean",
+                    "title": {
+                        "en": "Connected"
+                    },
+                    "example": false
+                }
+            ]
+        },
+        {
+            "id": "doorbell-rings",
+            "title": {
+                "en": "There is someone ringing"
+            },
+            "hint": {
+                "en": "This will trigger when a Gather user is ringing you."
+            },
+            "tokens": [
+                {
+                    "name": "person",
+                    "type": "string",
+                    "title": {
+                        "en": "Person"
+                    },
+                    "example": {
+                        "en": "John Doe"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "incoming-wave",
+            "title": {
+                "en": "Someone waves at you"
+            },
+            "hint": {
+                "en": "This will trigger when a Gather user waves at you."
+            },
+            "tokens": [
+                {
+                    "name": "person",
+                    "type": "string",
+                    "title": {
+                        "en": "Person"
+                    },
+                    "example": {
+                        "en": "John Doe"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "presence-status",
+            "title": {
+                "en": "Presence status changes"
+            },
+            "hint": {
+                "en": "This will trigger when one (or many) Gather user enter (or leave) the the private space you're in."
+            },
+            "tokens": [
+                {
+                    "name": "alone",
+                    "type": "boolean",
+                    "title": {
+                        "en": "Alone"
+                    },
+                    "example": true
+                },
+                {
+                    "name": "away",
+                    "type": "boolean",
+                    "title": {
+                        "en": "Away"
+                    },
+                    "example": false
+                },
+                {
+                    "name": "persons",
+                    "type": "string",
+                    "title": {
+                        "en": "Persons"
+                    },
+                    "example": {
+                        "en": "John Doe, Jane Doe"
+                    }
+                }
+            ]
+        }
+    ]
+}

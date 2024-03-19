@@ -1,0 +1,110 @@
+<fieldset class="homey-form-fieldset">
+    <div class="homey-form-group">
+        <label class="homey-form-label" for="name" data-i18n="device.name">Name</label>
+        <input class="homey-form-input" id="name" type="text" value="" />
+        <p style="font-size: 0.8rem; font-style: italic;" data-i18n="device.nameHelp"></p>
+    </div>
+
+    <div class="homey-form-group">
+        <label class="homey-form-label" for="avatarName" data-i18n="device.avatarName">Avatar name</label>
+        <input class="homey-form-input" id="avatarName" type="text" value="" />
+        <p style="font-size: 0.8rem; font-style: italic;" data-i18n="device.avatarNameHelp"></p>
+    </div>
+
+    <div class="homey-form-group">
+        <label class="homey-form-label" for="spaceId" data-i18n="device.spaceId">Space</label>
+        <input class="homey-form-input" id="spaceId" type="text" value="" />
+        <p style="font-size: 0.8rem; font-style: italic;" data-i18n="device.spaceIdHelp"></p>
+    </div>
+
+    <div class="homey-form-group" id="tokenContainer" style="display: none;">
+        <label class="homey-form-label" for="token" data-i18n="settings.token">Token</label>
+        <input class="homey-form-input" id="token" type="text" value="" />
+        <p style="font-size: 0.8rem; font-style: italic;" data-i18n="settings.tokenHelp"></p>
+        <a href="https://gather.town/apiKeys" target="_blank">https://gather.town/apiKeys</a>
+    </div>
+</fieldset>
+
+<button id="save" class="homey-button-primary-full is-disabled" data-i18n="save" disabled="true">Save</button>
+
+<script type="text/javascript">
+    const listenFor = ['keydown', 'keyup', 'keypress', 'change'];
+    let isSaving = false;
+    let hasToken = false;
+
+    var tokenContainer = document.getElementById("tokenContainer");
+    var tokenElement = document.getElementById("token");
+    var nameElement = document.getElementById("name");
+    var avatarNameElement = document.getElementById("avatarName");
+    var spaceIdElement = document.getElementById("spaceId");
+    var saveElement = document.getElementById("save");
+
+    Homey.setTitle(Homey.__("device.create"));
+    Homey.on("has_token", function (value) {
+        hasToken = value;
+
+        if (!hasToken) {
+            tokenContainer.style.display = "block";
+        }
+    });    
+
+    function validate() {
+        saveElement.disabled = !nameElement.value.length || !avatarNameElement.value.length || !spaceIdElement.value.length || (!hasToken && !tokenElement.value.length);
+
+        if (saveElement.disabled) {
+            saveElement.classList.add("is-disabled");
+        } else {
+            saveElement.classList.remove("is-disabled");
+        }
+    }
+
+    listenFor.forEach(event => {
+        tokenElement.addEventListener(event, validate);
+        nameElement.addEventListener(event, validate);
+        avatarNameElement.addEventListener(event, validate);
+        spaceIdElement.addEventListener(event, validate);
+    });
+
+    validate();
+
+    saveElement.addEventListener("click", function () {
+        if (isSaving) {
+            return;
+        }
+
+        function createDevice() {
+            Homey.createDevice({
+                name: nameElement.value,
+                data: {
+                    id: spaceIdElement.value,
+                },
+                settings: {
+                    spaceId: spaceIdElement.value,
+                    avatarName: avatarNameElement.value
+                }
+            }).then(function (result) {
+                Homey.done();
+            }).catch(function (error) {
+                Homey.alert(error);
+                isSaving = false;
+                saveElement.classList.remove("is-loading");
+                saveElement.value = Homey.__("save");
+            });
+        }
+
+        saveElement.classList.add("is-loading");
+        saveElement.value = Homey.__("saving");
+
+        if (!hasToken) {
+            Homey.emit("save_token", { token: tokenElement.value })
+                .then(createDevice)
+                .catch(function (error) {
+                    if(error) {
+                        Homey.alert(error);
+                    }
+                });
+        } else {
+            createDevice();
+        }
+    });
+</script>

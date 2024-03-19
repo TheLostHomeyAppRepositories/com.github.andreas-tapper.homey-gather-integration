@@ -11,58 +11,42 @@
     </header>
 
     <fieldset class="homey-form-fieldset">
-        <legend class="homey-form-legend" data-i18n="settings.my-settings">My Settings</legend>
-
         <div class="homey-form-group">
-            <label class="homey-form-label" for="avatarName" data-i18n="settings.avatarName">Avatar name</label>
-            <input class="homey-form-input" id="avatarName" type="text" value="" />
-        </div>        
-        <div class="homey-form-group">
-            <label class="homey-form-label" for="spaceId" data-i18n="settings.spaceId">Space</label>
-            <input class="homey-form-input" id="spaceId" type="text" value="" />
-        </div>
-        <div class="homey-form-group">
-            <label class="homey-form-label" for="gatherToken" data-i18n="settings.gatherToken">Token</label>
-            <input class="homey-form-input" id="gatherToken" type="text" value="" />
+            <label class="homey-form-label" for="token" data-i18n="settings.token">Token</label>
+            <input class="homey-form-input" id="token" type="text" value="" />
+            <p style="font-size: 0.8rem; font-style: italic;" data-i18n="settings.tokenHelp"></p>
+            <a href="https://gather.town/apiKeys" target="_blank">https://gather.town/apiKeys</a>
         </div>
     </fieldset>
 
-    <button id="save" class="homey-button-primary-full">Save changes</button>
+    <p id="saved" data-i18n="settings.saved" style="display: none; color: rgb(63, 199, 0)"></p>
+
+    <button id="save" class="homey-button-primary-full" data-i18n="save">Save</button>
+
+    <h2>Third party software or design elements</h2>
+    <ul>
+        <li><a href="https://gathertown.notion.site/Gather-Websocket-API-bf2d5d4526db412590c3579c36141063#d15f608469674bf0ac6b85808df01a8c" target="_blank">Gather Websocket API</a></li>
+        <li>Office space by Rafiico Creative Studio from <a href="https://thenounproject.com/browse/icons/term/office-space/" target="_blank" title="office space Icons">Noun Project</a> (CC BY 3.0)</li>
+    </ul>
 
     <script type="text/javascript">
         function onHomeyReady(Homey) {
             Homey.ready();
 
-            var avatarNameElement = document.getElementById("avatarName");
-            var spaceIdElement = document.getElementById("spaceId");
-            var gatherTokenElement = document.getElementById("gatherToken");
+            var tokenElement = document.getElementById("token");
             var saveElement = document.getElementById("save");
 
-            Homey.get("avatarName", function (err, value) {
+            Homey.get("token", function (err, value) {
                 if (err) return Homey.alert(err);
-                avatarNameElement.value = value;
-            });
-
-            Homey.get("spaceId", function (err, value) {
-                if (err) return Homey.alert(err);
-                spaceIdElement.value = value;
-            });
-
-            Homey.get("gatherToken", function (err, value) {
-                if (err) return Homey.alert(err);
-                gatherTokenElement.value = value;
+                tokenElement.value = value;
             });
 
             saveElement.addEventListener("click", function (e) {
-                Homey.set("avatarName", avatarNameElement.value, function (err) {
+                Homey.set("token", tokenElement.value, function (err) {
                     if (err) return Homey.alert(err);
                 });
-                Homey.set("spaceId", spaceIdElement.value, function (err) {
-                    if (err) return Homey.alert(err);
-                });
-                Homey.set("gatherToken", gatherTokenElement.value, function (err) {
-                    if (err) return Homey.alert(err);
-                });
+
+                document.getElementById("saved").style.display = "block";
 
                 Homey.alert(Homey.__("settings.restartRequired"));
             });

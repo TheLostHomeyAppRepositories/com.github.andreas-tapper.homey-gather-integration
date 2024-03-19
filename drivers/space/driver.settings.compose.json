@@ -1,0 +1,24 @@
+[
+    {
+        "id": "avatarName",
+        "type": "text",
+        "label": {
+            "en": "Avatar name"
+        },
+        "value": "John Doe",
+        "hint": {
+            "en": "The name of your avatar."
+        }
+    },
+    {
+        "id": "spaceId",
+        "type": "text",
+        "label": {
+            "en": "Space"
+        },
+        "value": "https://app.gather.town/app/oxrhEtb3sV7VutbQ/GatherOffice",
+        "hint": {
+            "en": "Url or id of the space."
+        }
+    }
+]
