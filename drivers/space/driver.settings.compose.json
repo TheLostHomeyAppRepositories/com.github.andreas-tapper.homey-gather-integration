@@ -3,22 +3,26 @@
         "id": "avatarName",
         "type": "text",
         "label": {
-            "en": "Avatar name"
+            "en": "Avatar name",
+            "sv": "Avatarnamn"
         },
         "value": "John Doe",
         "hint": {
-            "en": "The name of your avatar."
+            "en": "The name displayed above your character in Gather.",
+            "sv": "Namnet som syns ovanför din karaktär i Gather."
         }
     },
     {
         "id": "spaceId",
         "type": "text",
         "label": {
-            "en": "Space"
+            "en": "Space",
+            "sv": "Kontorsutrymme"
         },
         "value": "https://app.gather.town/app/oxrhEtb3sV7VutbQ/GatherOffice",
         "hint": {
-            "en": "Url or id of the space."
+            "en": "This is the unique identifier of your space. Use the whole URL or just the id.",
+            "sv": "Var god ange en URL (eller ett id) till ditt kontorsutrymme."
         }
     }
 ]
