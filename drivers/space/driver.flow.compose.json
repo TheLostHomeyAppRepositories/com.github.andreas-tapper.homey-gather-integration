@@ -3,19 +3,23 @@
         {
             "id": "connect",
             "title": {
-                "en": "Connect to Gather"
+                "en": "Connect to Gather",
+                "sv": "Anslut till Gather"
             },
             "hint": {
-                "en": "Tries to connect to Gather, if already connected this will be ignored."
+                "en": "Tries to connect to Gather, if already connected this will be ignored.",
+                "sv": "Försöker ansluta till Gather, om du redan är ansluten kommer kommandot ignoreras."
             }
         },
         {
             "id": "disconnect",
             "title": {
-                "en": "Disconnect from Gather"
+                "en": "Disconnect from Gather",
+                "sv": "Stäng av Gather"
             },
             "hint": {
-                "en": "Disconnect from Gather, if already disconnected this will be ignored."
+                "en": "Disconnect from Gather, if already disconnected this will be ignored.",
+                "sv": "Bryt anslutningen till Gather, om du redan är frånkopplad kommer kommandot att ignoreras."
             }
         }
     ],
@@ -23,22 +27,26 @@
         {
             "id": "alone",
             "title": {
-                "en": "You're !{{|not }}alone"
+                "en": "You're !{{|not}} alone",
+                "sv": "Du är !{{|inte}} ensam"
             }
         },
         {
             "id": "is-connected",
             "title": {
-                "en": "Is connected"
+                "en": "Is connected",
+                "sv": "Är ansluten"
             },
             "hint": {
-                "en": "You've got a connection to Gather"
+                "en": "You've got a connection to Gather",
+                "sv": "Du är ansluten till Gather"
             }
         },
         {
             "id": "present",
             "title": {
-                "en": "You're !{{present|away}}"
+                "en": "You're !{{present|away}}",
+                "sv": "Du är !{{närvarande|borta}}"
             }
         }
     ],
@@ -46,17 +54,20 @@
         {
             "id": "connection-status",
             "title": {
-                "en": "Connection status changes"
+                "en": "Connection status changes",
+                "sv": "Anslutningen förändras"
             },
             "hint": {
-                "en": "This will trigger when Gather connect or disconnect to the Gather internet service."
+                "en": "This will trigger when Gather connect or disconnect to the Gather internet service.",
+                "sv": "Funktionen aktiveras då anslutningen förändras mot internettjänsten Gather."
             },
             "tokens": [
                 {
                     "name": "connected",
                     "type": "boolean",
                     "title": {
-                        "en": "Connected"
+                        "en": "Connected",
+                        "sv": "Ansluten"
                     },
                     "example": false
                 }
@@ -65,20 +76,24 @@
         {
             "id": "doorbell-rings",
             "title": {
-                "en": "There is someone ringing"
+                "en": "There is someone ringing",
+                "sv": "Det är någon som ringer"
             },
             "hint": {
-                "en": "This will trigger when a Gather user is ringing you."
+                "en": "This will trigger when a Gather user is ringing you.",
+                "sv": "Funktionen aktiveras då en Gatheranvändare ringer dig."
             },
             "tokens": [
                 {
                     "name": "person",
                     "type": "string",
                     "title": {
-                        "en": "Person"
+                        "en": "Person",
+                        "sv": "Person"
                     },
                     "example": {
-                        "en": "John Doe"
+                        "en": "John Doe",
+                        "sv": "N.N."
                     }
                 }
             ]
@@ -86,20 +101,24 @@
         {
             "id": "incoming-wave",
             "title": {
-                "en": "Someone waves at you"
+                "en": "Someone waves at you",
+                "sv": "Någon vinkar till dig"
             },
             "hint": {
-                "en": "This will trigger when a Gather user waves at you."
+                "en": "This will trigger when a Gather user waves at you.",
+                "sv": "Funktionen aktiveras då en Gatheranvändare vinkar till dig."
             },
             "tokens": [
                 {
                     "name": "person",
                     "type": "string",
                     "title": {
-                        "en": "Person"
+                        "en": "Person",
+                        "sv": "Person"
                     },
                     "example": {
-                        "en": "John Doe"
+                        "en": "John Doe",
+                        "sv": "N.N."
                     }
                 }
             ]
@@ -107,17 +126,20 @@
         {
             "id": "presence-status",
             "title": {
-                "en": "Presence status changes"
+                "en": "Presence status changes",
+                "sv": "Närvarostatus ändras"
             },
             "hint": {
-                "en": "This will trigger when one (or many) Gather user enter (or leave) the the private space you're in."
+                "en": "This will trigger when one (or many) Gather user enter (or leave) the the private space you're in.",
+                "sv": "Funktionen aktiveras när någon (eller några) Gatheranvändare kommer in (eller lämnar) det privata utrymmet som du är i."
             },
             "tokens": [
                 {
                     "name": "alone",
                     "type": "boolean",
                     "title": {
-                        "en": "Alone"
+                        "en": "Alone",
+                        "sv": "Ensam"
                     },
                     "example": true
                 },
@@ -125,7 +147,8 @@
                     "name": "away",
                     "type": "boolean",
                     "title": {
-                        "en": "Away"
+                        "en": "Away",
+                        "sv": "Borta"
                     },
                     "example": false
                 },
@@ -133,10 +156,12 @@
                     "name": "persons",
                     "type": "string",
                     "title": {
-                        "en": "Persons"
+                        "en": "Persons",
+                        "sv": "Personer"
                     },
                     "example": {
-                        "en": "John Doe, Jane Doe"
+                        "en": "John Doe, Jane Doe",
+                        "sv": "N.N., N.N"
                     }
                 }
             ]

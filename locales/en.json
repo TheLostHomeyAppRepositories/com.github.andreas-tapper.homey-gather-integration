@@ -13,7 +13,7 @@
     "device": {
         "create": "Connect to a space",
         "name": "Name",
-        "nameHelp": "Name of the space you're creating. This name should be unique between all your configured spaces.",
+        "nameHelp": "Name of the space you're creating. This will identify the space in Homey.",
         "nameRequired": "Please provide a name for the space.",
         "avatarName": "Avatar name",
         "avatarNameHelp": "The name displayed above your character in Gather.",

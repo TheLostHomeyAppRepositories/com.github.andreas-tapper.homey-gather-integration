@@ -8,16 +8,19 @@
     "local"
   ],
   "name": {
-    "en": "Gather"
+    "en": "Gather",
+    "sv": "Gather"
   },
   "description": {
-    "en": "Integration to the Gather video chat platform."
+    "en": "Integration to the Gather video chat platform.",
+    "sv": "Integration till video och chat plattformen Gather."
   },
   "category": [
     "internet"
   ],
   "tags": { 
-    "en": ["gather", "integration", "video conferencing", "conference", "remote work"] 
+    "en": ["gather", "integration", "video conferencing", "conference", "remote work"],
+    "sv": ["gather", "integration", "video konferans", "konferas", "distansarbete"] 
   },
   "permissions": [],
   "images": {

@@ -1,0 +1,25 @@
+{
+    "save": "Spara ändringarna",
+    "saving": "Sparar ändringarna",
+    "noApiKeyFound": "Hittade ingen API nyckel, var god ange en i applikationsinställningarna.",
+    "settings": {
+        "title": "Applikationsinställningar",
+        "token": "Nyckel",
+        "tokenHelp": "Nyckeln krävs för att ansluta till Gather plattformen och den kan lätt genereras med länken nedan.",
+        "tokenRequired": "Var god ange en API nyckel.",
+        "restartRequired": "Det krävs en omstart av applikationen eller att du återansluter till Gather för att ändringarna skall appliceras.",
+        "saved": "Dina ändringar är nu sparade."
+    },
+    "device": {
+        "create": "Anslut till ett kontorsutrymme",
+        "name": "Namn",
+        "nameHelp": "Namn på det utrymmet du skapar. Namnet är det som kommer visas i Homey.",
+        "nameRequired": "Var god ange ett namn för utrymmet.",
+        "avatarName": "Avatarnamn",
+        "avatarNameHelp": "Namnet som syns ovanför din karaktär i Gather.",
+        "avatarNameRequired": "Var god ange namnet på din karaktär.",
+        "spaceId": "Kontorsutrymme",
+        "spaceIdHelp": "Det här är en unik identifierare till ditt kontorsutrymme. Använd en hel URL eller ett id.",
+        "spaceIdRequired": "Var god ange en URL (eller ett id) till ditt kontorsutrymme."
+    }
+}
