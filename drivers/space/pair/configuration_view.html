@@ -46,7 +46,7 @@
         if (!hasToken) {
             tokenContainer.style.display = "block";
         }
-    });    
+    });
 
     function validate() {
         saveElement.disabled = !nameElement.value.length || !avatarNameElement.value.length || !spaceIdElement.value.length || (!hasToken && !tokenElement.value.length);
@@ -72,6 +72,9 @@
             return;
         }
 
+        saveElement.classList.add("is-loading");
+        saveElement.value = Homey.__("saving");
+
         function createDevice() {
             Homey.createDevice({
                 name: nameElement.value,
@@ -81,7 +84,9 @@
                 settings: {
                     spaceId: spaceIdElement.value,
                     avatarName: avatarNameElement.value
-                }
+                },        
+                icon: "/icon.svg",
+                capabilities: ["connection"]
             }).then(function (result) {
                 Homey.done();
             }).catch(function (error) {
@@ -91,9 +96,6 @@
                 saveElement.value = Homey.__("save");
             });
         }
-
-        saveElement.classList.add("is-loading");
-        saveElement.value = Homey.__("saving");
 
         if (!hasToken) {
             Homey.emit("save_token", { token: tokenElement.value })

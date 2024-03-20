@@ -36,7 +36,7 @@ class SpaceDriver extends Driver {
     disconnectActionCard.registerRunListener(async ({ device, message }) => {
       self.log("Disconnect", device);
       await device.disconnect();
-    });    
+    });
 
     self.log('Initialization of the Gather space driver completed.');
   }

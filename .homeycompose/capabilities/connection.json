@@ -1,0 +1,12 @@
+{
+    "type": "boolean",
+    "title": { 
+        "en": "Connected" 
+    },
+    "getable": true,
+    "setable": true,
+    "uiComponent": "toggle",
+    "uiQuickAction": true,
+    "icon": "/assets/connect.svg",
+    "insights": false
+  }

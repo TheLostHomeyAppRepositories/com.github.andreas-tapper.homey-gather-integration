@@ -43,6 +43,19 @@ class SpaceDevice extends Device {
     self.#connectionStatusCard = self.homey.flow.getDeviceTriggerCard("connection-status");
     self.#presenceStatusCard = self.homey.flow.getDeviceTriggerCard("presence-status");
 
+    // Capabilities
+    if(!self.hasCapability("connection")) {
+      self.addCapability("connection");
+    }
+
+    self.registerCapabilityListener("connection", async (value) => {
+      if(value) {
+        await self.connect();
+      } else {
+        await self.disconnect();
+      }
+    });
+
     // Gather integration
     await self.connect();
 
@@ -53,9 +66,6 @@ class SpaceDevice extends Device {
     await this.disconnect();
   }
 
-  /**
-   * onAdded is called when the user adds the device, called just after pairing.
-   */
   async onAdded() {
     this.log('A gather space has been added.');
   }
@@ -70,20 +80,14 @@ class SpaceDevice extends Device {
    */
   async onSettings({ oldSettings, newSettings, changedKeys }) {
     this.log('Space settings where changed', oldSettings, newSettings, changedKeys);
+    await this.disconnect();
+    await this.connect();
   }
 
-  /**
-   * onRenamed is called when the user updates the device's name.
-   * This method can be used this to synchronise the name to the device.
-   * @param {string} name The new name
-   */
   async onRenamed(name) {
     this.log(`Space was renamed to '${name}'`);
   }
 
-  /**
-   * onDeleted is called when the user deleted the device.
-   */
   async onDeleted() {
     this.log('Space has been deleted.');
   }
@@ -168,11 +172,8 @@ class SpaceDevice extends Device {
     return (connected) => {
       self.log(`Gather connection ${(connected ? 'established' : 'failed')}.`);
       self.#isConnected = connected;
-      self.#connectionStatusCard.trigger(self, { connected: connected }).catch(function (error) {
-        if (error) {
-          self.log("Connection status card failed.", error);
-        }
-      });
+      self.#connectionStatusCard.trigger(self, { connected: connected }).catch(self.error);
+      self.setCapabilityValue("connection", connected).catch(self.error);
     };
   }
 
@@ -210,11 +211,7 @@ class SpaceDevice extends Device {
     const self = this;
     return (data, context) => {
       self.log(`${context?.player?.name} is ringing you.`);
-      self.#doorbellRingsCard.trigger(self, { person: context?.player?.name }).catch(function (error) {
-        if (error) {
-          self.log("Doorbell rings card failed.", error);
-        }
-      });
+      self.#doorbellRingsCard.trigger(self, { person: context?.player?.name }).catch(self.error);
     }
   }
 
@@ -251,11 +248,7 @@ class SpaceDevice extends Device {
         alone: me.isAlone,
         away: me.away,
         persons: others
-      }).catch(function (error) {
-        if (error) {
-          self.log("Presence status card failed.", error);
-        }
-      });      
+      }).catch(self.error);
     }
   }
 
@@ -267,11 +260,7 @@ class SpaceDevice extends Device {
 
       if (me?.id == targetId) {
         self.log(`${context?.player?.name} waves to you.`);
-        self.#incomingWaveCard.trigger(self, { person: context?.player?.name }).catch(function (error) {
-          if (error) {
-            self.log("Incoming wave card failed.", error);
-          }
-        });
+        self.#incomingWaveCard.trigger(self, { person: context?.player?.name }).catch(self.error);
       } else {
         const others = self.#game.filterPlayersInSpace(player => player.id == targetId);
         const playerName = others.length == 1 ? others[0].name : "unknown";

@@ -4,7 +4,6 @@
     "noApiKeyFound": "No API key provided, please configure it in application settings.",
     "settings": {
         "title": "Application settings",
-        "subtitle": "These are the shared settings for all your Gather spaces.",
         "token": "Token",
         "tokenHelp": "The access token is required to connect to the Gather platform and it can easily be generated at the link below.",
         "tokenRequired": "Please provide an API token.",

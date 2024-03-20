@@ -5,12 +5,11 @@
 </head>
 
 <body>
-    <header class="homey-header">
+    <header class="homey-header" style="margin-bottom: 0;">
         <h1 class="homey-title" data-i18n="settings.title"></h1>
-        <p class="homey-subtitle" data-i18n="settings.subtitle"></p>
     </header>
 
-    <fieldset class="homey-form-fieldset">
+    <fieldset class="homey-form-fieldset" style="margin-bottom: 40px;">
         <div class="homey-form-group">
             <label class="homey-form-label" for="token" data-i18n="settings.token">Token</label>
             <input class="homey-form-input" id="token" type="text" value="" />
@@ -23,13 +22,15 @@
 
     <button id="save" class="homey-button-primary-full" data-i18n="save">Save</button>
 
-    <header class="homey-header">
-        <h1 class="homey-title">Third party software or design elements</h1>
-    </header>
-    <ul>
-        <li><a href="https://gathertown.notion.site/Gather-Websocket-API-bf2d5d4526db412590c3579c36141063#d15f608469674bf0ac6b85808df01a8c" target="_blank">Gather Websocket API</a></li>
-        <li>Office space by Rafiico Creative Studio from <a href="https://thenounproject.com/browse/icons/term/office-space/" target="_blank" title="office space Icons">Noun Project</a> (CC BY 3.0)</li>
-    </ul>
+    <div style="margin-top: 100px;">
+        <h2>Third party software or design elements</h2>
+    
+        <ul>
+            <li><a href="https://gathertown.notion.site/Gather-Websocket-API-bf2d5d4526db412590c3579c36141063#d15f608469674bf0ac6b85808df01a8c" target="_blank">Gather Websocket API</a></li>
+            <li>Office space by Rafiico Creative Studio from <a href="https://thenounproject.com/browse/icons/term/office-space/" target="_blank" title="office space Icons">Noun Project</a> (CC BY 3.0)</li>
+            <li>Connect by Tomas Knopp from <a href="https://thenounproject.com/browse/icons/term/connect/" target="_blank" title="connect Icons">Noun Project</a> (CC BY 3.0)</li>
+        </ul>
+    </div>
 
     <script type="text/javascript">
         function onHomeyReady(Homey) {
